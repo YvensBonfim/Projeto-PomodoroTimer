@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="window-container">
+        <div class="pomodoro-container">
+            <div class="donut-timer">
+                <svg class="donut-svg" viewBox="0 0 100 100">
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop class="gradient-green" offset="0%" />
+                            <stop class="gradient-light-green" offset="100%" />
+                        </linearGradient>
+                    </defs>
+                    <circle class="donut-background" cx="50" cy="50" r="45"></circle>
+                    <circle class="donut-progress" cx="50" cy="50" r="45" stroke="url(#gradient)"></circle>
+                </svg>
+                <div class="donut-inner">
+                    <span id="timer">25:00</span>
+                </div>
+            </div>
+            <div class="timer-controls">
+                <div class="time-inputs">
+                    <label for="study-time" class="input-label">Tempo de foco (min):</label>
+                    <input type="number" id="study-time" placeholder="Tempo de estudo (min)" min="1" value="25">
+                    
+                    <label for="break-time" class="input-label">Tempo de pausa (min):</label>
+                    <input type="number" id="break-time" placeholder="Tempo de pausa (min)" min="1" value="5">
+                </div>
+                <div class="buttons">
+                    <button id="start-pause-btn">Iniciar</button>
+                    <button id="reset-btn">Resetar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/Timer.js"></script>
+    <script src="js/PomodoroTimer.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
