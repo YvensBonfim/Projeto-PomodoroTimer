@@ -42,6 +42,14 @@ A Técnica Pomodoro é um método de gerenciamento de tempo que alterna período
 
 ---
 
+---
+
+## 💻 Como acessar:
+
+https://melodious-hummingbird-3201c5.netlify.app/
+
+---
+
 ## 📸 Prévia
 
 ![image](https://github.com/user-attachments/assets/2612f3f2-5d8c-4689-adc1-914f92056877)
