@@ -84,11 +84,7 @@ https://pomodorotimer12.netlify.app/
 ---
 
 
-# Pomododro - Aplicação Pomodoro com Login
 
-![Pomodoro Technique](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Pomodoro_Technique_logo.svg/1200px-Pomodoro_Technique_logo.svg.png)
-
-Aplicação web para gerenciamento de tempo usando a técnica Pomodoro, com sistema de autenticação de usuários e temas personalizáveis.
 
 ## 📋 Pré-requisitos
 
@@ -99,19 +95,25 @@ Aplicação web para gerenciamento de tempo usando a técnica Pomodoro, com sist
 
 ## 🚀 Começando
 
-### 1. Clone o repositório
-
-```bash
+🛠️ Instalação Passo a Passo
+1. Clone o repositório
+bash
 git clone https://github.com/seu-usuario/pomododro.git
 cd pomododro
-```
+2. Instale as dependências
+Navegue até a pasta do servidor e instale as dependências:
 
-### 2. Configure o banco de dados
+bash
+cd login/server
+npm install express bcryptjs jsonwebtoken cors body-parser dotenv pg
+3. Configure o banco de dados
+Inicie o PostgreSQL
 
-1. Inicie o PostgreSQL
-2. Execute o seguinte comando SQL para criar a tabela de usuários:
+Execute os seguintes comandos SQL:
 
-```sql
+sql
+CREATE DATABASE postgres;
+
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
@@ -119,36 +121,20 @@ CREATE TABLE users (
     password VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-```
+4. Configure as variáveis de ambiente
+Crie um arquivo .env na pasta login/server com:
 
-### 3. Instale as dependências
-
-```bash
-cd login/server
-npm install
-```
-
-### 4. Configure as variáveis de ambiente
-
-Crie um arquivo `.env` na pasta `login/server` com:
-
-```env
+env
 DB_USER=postgres
 DB_HOST=localhost
 DB_NAME=postgres
 DB_PASSWORD=sua_senha
 DB_PORT=5432
 SECRET_KEY=seu_segredo_secreto
-```
-
-## ▶️ Executando a aplicação
-
-```bash
+▶️ Executando a aplicação
+bash
 node server.js
-```
-
-A aplicação estará disponível em: [http://localhost:3000](http://localhost:3000)
-
+Acesse: http://localhost:3000
 ## 🏗️ Estrutura do Projeto
 
 ```
