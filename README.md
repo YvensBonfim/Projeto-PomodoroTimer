@@ -139,17 +139,13 @@ pomodoro/
 
 ## 📌 Observações
 
-Esta é a versão inicial do projeto. Novas funcionalidades como:
-- Histórico de sessões
-- Estatísticas de produtividade
-- Mais temas e sons
-serão implementadas em breve.
+
 
 ## 📄 Licença
 
 Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
 
-## ✉️ Contato
 
-Desenvolvido por [Seu Nome] - [seu@email.com]  
+
+
 Repositório: [github.com/seu-usuario/pomododro]
