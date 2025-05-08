@@ -119,6 +119,10 @@ pomodoro/
 3. **Porta em uso**:
    - Altere a porta no arquivo `server.js` (linha `const PORT = 3000`)
 
+4. **module not found**:
+
+mude o caminho no arquivo server.js para o disco local onde está baixado a aplicação 
+
 ## 🌐 Rotas Principais
 
 | Rota | Descrição |
