@@ -1,175 +1,123 @@
-# ⏳ Pomodoro Timer
 
-Um temporizador Pomodoro interativo e estilizado, feito com HTML, CSS e JavaScript. Ideal para quem deseja gerenciar melhor o tempo de foco e pausa durante os estudos ou o trabalho.
+
+# ⏳ Pomododro - Pomodoro Timer com Autenticação
+
+![Pomodoro Technique](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Pomodoro_Technique_logo.svg/1200px-Pomodoro_Technique_logo.svg.png)
+
+Um temporizador Pomodoro interativo com sistema de autenticação, temas personalizáveis e músicas de fundo. Ideal para gerenciar períodos de foco e descanso com estilo.
 
 ## 🧠 O que é Pomodoro?
 
-A Técnica Pomodoro é um método de gerenciamento de tempo que alterna períodos de foco com pausas curtas, ajudando a manter a produtividade e evitar a fadiga mental.
+A Técnica Pomodoro é um método de gerenciamento de tempo que alterna períodos de foco (25 minutos) com pausas curtas (5 minutos), aumentando a produtividade e reduzindo a fadiga mental.
 
----
+## 🚀 Funcionalidades Principais
 
-## 🚀 Funcionalidades
+- ⏱️ **Temporizador visual** com animação circular de progresso
+- 🎨 **Temas personalizáveis** (manhã, tarde e noite)
+- 🎵 **Músicas de fundo** para melhor concentração
+- 🔐 **Sistema de autenticação** com cadastro e login
+- ⚙️ **Configuração flexível** de tempos de foco e pausa
+- 🔔 **Notificações** ao final de cada sessão
 
-- Temporizador visual em formato de anel circular com animação de progresso.
-- Definição personalizada dos tempos de foco e pausa.
-- Botões para iniciar/pausar e resetar o temporizador.
-- Alerta automático ao final de cada sessão.
--temas visuais com musicas de fundo para ajudar no foco
+## 🛠 Tecnologias Utilizadas
 
----
+- **Front-end**: HTML5, CSS3 (Glassmorphism), JavaScript
+- **Back-end**: Node.js, Express
+- **Banco de dados**: PostgreSQL
+- **Autenticação**: JWT (JSON Web Tokens)
 
-## 🗂 Estrutura dos Arquivos
+## 🗂 Estrutura do Projeto
 
 ```
 pomodoro/
-├── jsTimer/
-│   ├── main.js
-│   ├── pomodorotimer.js
-│   ├── soundlogic.js
-│   ├── timercontrol.js
-│   └── timerdisplay.js
-├── login/
-│   ├── public/
-│   │   ├── index.html
-│   │   ├── register.html
-│   │   └── script.js
-│   └── server/
-│       ├── database.js
-│       └── server.js
-├── telainicial/
-│   └── dashboard.html
-└── temas/
-    ├── temamanha/
-    ├── tematarde/
-    └── temanoite/
+├── jsTimer/              # Lógica do temporizador
+│   ├── main.js           # Ponto de entrada
+│   ├── pomodorotimer.js  # Classe principal
+│   ├── soundlogic.js     # Controle de áudio
+│   ├── timercontrol.js   # Controles do timer
+│   └── timerdisplay.js   # Exibição visual
+├── login/                # Sistema de autenticação
+│   ├── public/           # Páginas front-end
+│   └── server/           # Back-end (Node.js)
+├── telainicial/          # Dashboard pós-login
+└── temas/                # Temas personalizados
+    ├── temamanha/        # Tema claro
+    ├── tematarde/        # Tema intermediário  
+    └── temanoite/        # Tema escuro
 ```
-
----
 
 ## 💻 Como Rodar Localmente
 
-1. Faça o download ou clone este repositório.
-2. Navegue até a pasta do projeto.
-3. Abra o arquivo `index.html` em seu navegador preferido.
-
----
-
----
-
-## 💻 Como acessar:
-
-https://pomodorotimer12.netlify.app/
-
----
-
-
-
-## 🛠 Tecnologias Usadas
-
-- HTML5
-- CSS3 (com Glassmorphism)
-- JavaScript puro (sem frameworks)
--postgree
-
----
-
-## 📌 Observações
-
--Está é a primeira versão da aplicação, funções extras, demais telas e funcionalidades ainda serão implementadas
-- A interface é totalmente responsiva para desktop. Para mobile, ajustes adicionais ainda serão adicionados
-
----
-
-
-
-
-## 📋 Pré-requisitos
+### 📋 Pré-requisitos
 
 - [Node.js](https://nodejs.org/) (v14 ou superior)
 - [PostgreSQL](https://www.postgresql.org/) (v12 ou superior)
 - NPM ou Yarn
 - Git (opcional)
 
-## 🚀 Começando
+### 🛠️ Instalação Passo a Passo
 
-🛠️ Instalação Passo a Passo
-1. Clone o repositório
-bash
-git clone https://github.com/seu-usuario/pomododro.git
-cd pomododro
-2. Instale as dependências
-Navegue até a pasta do servidor e instale as dependências:
+1. **Clone o repositório**
+   ```bash
+   git clone https://github.com/seu-usuario/pomododro.git
+   cd pomododro
+   ```
 
-bash
-cd login/server
-npm install express bcryptjs jsonwebtoken cors body-parser dotenv pg
-3. Configure o banco de dados
-Inicie o PostgreSQL
+2. **Instale as dependências**
+   ```bash
+   cd login/server
+   npm install express bcryptjs jsonwebtoken cors body-parser dotenv pg
+   ```
 
-Execute os seguintes comandos SQL:
+3. **Configure o banco de dados**
+   - Inicie o serviço do PostgreSQL
+   - Execute os seguintes comandos SQL:
+     ```sql
+     CREATE DATABASE postgres;
+     
+     CREATE TABLE users (
+         id SERIAL PRIMARY KEY,
+         username VARCHAR(50) UNIQUE NOT NULL,
+         email VARCHAR(100) UNIQUE NOT NULL,
+         password VARCHAR(100) NOT NULL,
+         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+     );
+     ```
 
-sql
-CREATE DATABASE postgres;
+4. **Configure as variáveis de ambiente**
+   - Crie um arquivo `.env` na pasta `login/server` com:
+     ```env
+     DB_USER=postgres
+     DB_HOST=localhost
+     DB_NAME=postgres
+     DB_PASSWORD=sua_senha
+     DB_PORT=5432
+     SECRET_KEY=seu_segredo_secreto
+     ```
 
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(100) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-4. Configure as variáveis de ambiente
-Crie um arquivo .env na pasta login/server com:
+5. **Inicie o servidor**
+   ```bash
+   node server.js
+   ```
 
-env
-DB_USER=postgres
-DB_HOST=localhost
-DB_NAME=postgres
-DB_PASSWORD=sua_senha
-DB_PORT=5432
-SECRET_KEY=seu_segredo_secreto
-▶️ Executando a aplicação
-bash
-node server.js
-Acesse: http://localhost:3000
-## 🏗️ Estrutura do Projeto
+6. **Acesse a aplicação**
+   Abra [http://localhost:3000](http://localhost:3000) no seu navegador
 
-```
-pomodoro/
-├── jsTimer/              # Lógica do temporizador Pomodoro
-│   ├── main.js           # Ponto de entrada
-│   ├── pomodorotimer.js  # Classe principal do timer
-│   ├── soundlogic.js     # Controle de áudio
-│   ├── timercontrol.js   # Controles do timer
-│   └── timerdisplay.js   # Exibição do timer
-├── login/
-│   ├── public/           # Front-end
-│   │   ├── index.html    # Página de login
-│   │   ├── register.html # Página de registro
-│   │   └── script.js     # Lógica do front-end
-│   └── server/           # Back-end
-│       ├── database.js   # Conexão com PostgreSQL
-│       └── server.js     # Servidor principal
-├── telainicial/          # Dashboard após login
-│   └── dashboard.html    
-└── temas/                # Temas personalizados
-    ├── temamanha/        # Tema manhã
-    ├── tematarde/        # Tema tarde
-    └── temanoite/        # Tema noite
-```
+## 🔍 Solução de Problemas Comuns
 
-## 🔧 Funcionalidades
+1. **Erro de conexão com PostgreSQL**:
+   - Verifique se o serviço está rodando
+   - Confira as credenciais no arquivo `.env`
+   - Teste a conexão manualmente com `psql -U postgres`
 
-- ⏱️ Temporizador Pomodoro configurável
-  - Tempo de estudo e pausa personalizáveis
-  - Barra de progresso visual
-  - Controles de iniciar/pausar/resetar
-- 🔐 Sistema de autenticação
-  - Cadastro de usuários
-  - Login com JWT
-  - Validação de formulários
-- 🎨 Temas personalizáveis
-- 🔊 Controle de áudio
+2. **Dependências faltando**:
+   ```bash
+   rm -rf node_modules package-lock.json
+   npm install
+   ```
+
+3. **Porta em uso**:
+   - Altere a porta no arquivo `server.js` (linha `const PORT = 3000`)
 
 ## 🌐 Rotas Principais
 
@@ -181,13 +129,21 @@ pomodoro/
 | `/temas/:tema/:arquivo` | Acessa temas disponíveis |
 | `/jsTimer` | Recursos do temporizador |
 
-## 🤝 Contribuição
+## 🤝 Como Contribuir
 
 1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
+2. Crie sua branch (`git checkout -b feature/nova-feature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
+4. Push para a branch (`git push origin feature/nova-feature`)
 5. Abra um Pull Request
+
+## 📌 Observações
+
+Esta é a versão inicial do projeto. Novas funcionalidades como:
+- Histórico de sessões
+- Estatísticas de produtividade
+- Mais temas e sons
+serão implementadas em breve.
 
 ## 📄 Licença
 
@@ -195,6 +151,5 @@ Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
 
 ## ✉️ Contato
 
-Seu Nome - [@seu_twitter](https://twitter.com/seu_twitter) - seu-email@exemplo.com
-
-Link do Projeto: [https://github.com/seu-usuario/pomododro](https://github.com/seu-usuario/pomododro)
+Desenvolvido por [Seu Nome] - [seu@email.com]  
+Repositório: [github.com/seu-usuario/pomododro]
