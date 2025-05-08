@@ -97,8 +97,9 @@ pomodoro/
 
 5. **Inicie o servidor**
    ```bash
-   node server.js
+   node server/server.js
    ```
+
 
 6. **Acesse a aplicação**
    Abra [http://localhost:3000](http://localhost:3000) no seu navegador
