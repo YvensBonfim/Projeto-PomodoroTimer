@@ -1,6 +1,3 @@
-
-
-
 # ⏳ Pomodoro Timer
 
 Um temporizador Pomodoro interativo e estilizado, feito com HTML, CSS e JavaScript. Ideal para quem deseja gerenciar melhor o tempo de foco e pausa durante os estudos ou o trabalho.
