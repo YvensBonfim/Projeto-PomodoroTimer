@@ -1,0 +1,20 @@
+<!DOCTYPE html> 
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Cadastro</h2>
+        <input type="text" id="newUsername" placeholder="Usuário" required minlength="2">
+        <input type="email" id="newEmail" placeholder="Email" required>
+        <input type="email" id="confirmEmail" placeholder="Confirme o Email" required>
+        <input type="password" id="newPassword" placeholder="Senha (mínimo 7 caracteres)" required>
+        <button onclick="register()">Cadastrar</button>
+        <a href="index.html">Voltar</a>
+    </div>
+    <script src="register.js"></script>
+</body>
+</html>
