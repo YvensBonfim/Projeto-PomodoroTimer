@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+</head>
+<body>
+  <h2>Bem-vindo ao sistema!</h2>
+  <button onclick="logout()">Sair</button>
+  <script>
+    if (!localStorage.getItem("token")) {
+      window.location.href = "index.html";
+    }
+    
+    function logout() {
+      localStorage.removeItem("token");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
