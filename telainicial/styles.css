@@ -1,0 +1,102 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Remove a barra de rolagem */
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center;
+    position: relative; /* Para posicionar o botão de áudio */
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 40px;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: nowrap; /* Impede que os cards quebrem para a próxima linha */
+    padding: 20px;
+    width: 100%;
+}
+
+/* Remover sublinhado dos links */
+.card-link {
+    text-decoration: none;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    height: 250px; /* Altura reduzida */
+    width: 200px; /* Largura reduzida */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #fff;
+    flex-shrink: 0; /* Impede que os cards encolham */
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 16px;
+    color: inherit;
+}
+
+/* Estilos específicos para cada card com gradiente */
+#final-de-tarde {
+    background: linear-gradient(135deg, #eb9a4a, #ff6f61);
+}
+
+#neve {
+    background: linear-gradient(135deg, #a0cfe5, #6eb5ff);
+}
+
+#chuva {
+    background: linear-gradient(135deg, #658fc5, #3a5a78);
+}
+
+#natureza {
+    background: linear-gradient(135deg, #76ca08, #1c9c51);
+}
+
+#lareira {
+    background: linear-gradient(135deg, #ffa9a8, #ff6f61);
+}
+
+#sem-tema {
+    background: linear-gradient(135deg, #f4f4f4, #d3d3d3);
+    color: #333;
+}
+
