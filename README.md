@@ -41,9 +41,9 @@ pomodoro/
 │   └── server/           # Back-end (Node.js)
 ├── telainicial/          # Dashboard pós-login
 └── temas/                # Temas personalizados
-    ├── temamanha/        # Tema claro
-    ├── tematarde/        # Tema intermediário  
-    └── temanoite/        # Tema escuro
+    ├── temamanha/        # Tema lareira
+    ├── tematarde/        # Tema chuva  
+    └── temanoite/        # Tema fim de tarde
 ```
 
 ## 💻 Como Rodar Localmente
