@@ -2,7 +2,7 @@
 
 # ⏳ Pomododro - Pomodoro Timer com Autenticação
 
-![Pomodoro Technique](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Pomodoro_Technique_logo.svg/1200px-Pomodoro_Technique_logo.svg.png)
+disponível em: https://pomodorotimer123.netlify.app/
 
 Um temporizador Pomodoro interativo com sistema de autenticação, temas personalizáveis e músicas de fundo. Ideal para gerenciar períodos de foco e descanso com estilo.
 
