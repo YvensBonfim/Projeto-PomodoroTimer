@@ -1,62 +1,47 @@
 require("dotenv").config();
+const path    = require("path");
 const express = require("express");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const pool = require("./database.js");
-const path = require("path");
+const bcrypt  = require("bcryptjs");
+const jwt     = require("jsonwebtoken");
+const cors    = require("cors");
 
-const app = express();
-const PORT = 3000;
-const SECRET_KEY = "seu_segredo_secreto"; // Troque por uma variável de ambiente
+// como database.js está na mesma pasta de server.js:
+const pool    = require(path.join(__dirname, "database.js"));
+
+const app     = express();
+const PORT       = process.env.PORT || 3000;
+const SECRET_KEY = process.env.JWT_SECRET || "troque_pra_seguro";
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-// Configuração para servir arquivos estáticos da pasta "login/public"
-app.use(express.static(path.join("C:", "Users", "ghfra", "source", "repos", "pomodoro", "login", "public")));
+// Caminhos relativos
+const serverDir       = __dirname;                  // .../pomodoro/login/server
+const loginDir        = path.resolve(serverDir, "..");      // .../pomodoro/login
+const rootDir         = path.resolve(loginDir,  "..");      // .../pomodoro
 
-// Configuração para servir arquivos estáticos da pasta "telainicial"
-app.use(express.static(path.join("C:", "Users", "ghfra", "source", "repos", "pomodoro", "telainicial")));
+const loginPublicDir  = path.join(loginDir,    "public");
+const telaInicialDir  = path.join(rootDir,     "telainicial");
+const temasDir        = path.join(rootDir,     "temas");
+const jsTimerDir      = path.join(rootDir,     "jsTimer");
+const cssPublicDir    = path.join(loginPublicDir, "css");
 
-// Configuração para servir arquivos estáticos da pasta "temas"
-app.use("/temas", express.static(path.join("C:", "Users", "ghfra", "source", "repos", "pomodoro", "temas")));
+// Serve estáticos
+app.use(express.static(loginPublicDir));
+app.use(express.static(telaInicialDir));
+app.use("/temas",   express.static(temasDir));
+app.use("/jsTimer", express.static(jsTimerDir));
+app.use("/css",     express.static(cssPublicDir));
 
-// Configuração para servir arquivos estáticos da pasta "jsTimer"
-app.use("/jsTimer", express.static(path.join("C:", "Users", "ghfra", "source", "repos", "pomodoro", "jsTimer")));
+// Rotas principais
+app.get("/",        (req, res) => res.sendFile(path.join(loginPublicDir,  "index.html")));
+app.get("/register",(req, res) => res.sendFile(path.join(loginPublicDir,  "register.html")));
+app.get("/dashboard",(req,res) => res.sendFile(path.join(telaInicialDir,  "dashboard.html")));
 
-// Rota para a página de login (index.html)
-app.get("/", (req, res) => {
-    res.sendFile(path.join("C:", "Users", "ghfra", "source", "repos", "pomodoro", "login", "public", "index.html"));
-});
-
-// Rota para a página de registro (register.html)
-app.get("/register", (req, res) => {
-    res.sendFile(path.join("C:", "Users", "ghfra", "source", "repos", "pomodoro", "login", "public", "register.html"));
-});
-
-// Rota para o dashboard (dashboard.html)
-app.get("/dashboard", (req, res) => {
-    res.sendFile(path.join("C:", "Users", "ghfra", "source", "repos", "pomodoro", "telainicial", "dashboard.html"));
-});
-
-// Rota para os temas (exemplo: /temas/tematarde/tarde.html)
+// Rota dinâmica de temas
 app.get("/temas/:tema/:arquivo", (req, res) => {
-    const { tema, arquivo } = req.params;
-    res.sendFile(path.join("C:", "Users", "ghfra", "source", "repos", "pomodoro", "temas", tema, arquivo));
-});
-
-// Rota para os arquivos CSS dos temas (exemplo: /temas/tematarde/style.css)
-app.get("/temas/:tema/style.css", (req, res) => {
-    const { tema } = req.params;
-    res.sendFile(path.join("C:", "Users", "ghfra", "source", "repos", "pomodoro", "temas", tema, "style.css"));
-});
-
-// Rota para os arquivos CSS da pasta "public/css" (exemplo: /css/index.css)
-app.get("/css/:arquivo", (req, res) => {
-    const { arquivo } = req.params;
-    res.sendFile(path.join("C:", "Users", "ghfra", "source", "repos", "pomodoro", "login", "public", "css", arquivo));
+  const { tema, arquivo } = req.params;
+  res.sendFile(path.join(temasDir, tema, arquivo));
 });
 
 // Cadastro de usuário
@@ -115,8 +100,8 @@ app.post("/login", async (req, res) => {
         res.status(500).json({ error: "Erro no login!" });
     }
 });
+// — suas rotas de API (register, login etc.) aqui — //
 
-// Servidor rodando
 app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
 });
