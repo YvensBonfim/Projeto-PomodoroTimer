@@ -1,15 +1,13 @@
-const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database("./users.db");
+const { Pool } = require("pg");
 
-db.serialize(() => {
-  db.run(`
-    CREATE TABLE IF NOT EXISTS users (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      email TEXT UNIQUE,
-      username TEXT UNIQUE,
-      password TEXT
-    )
-  `);
-});
+const pool = new Pool({
+  user: 'mack',          // ou seu usuário
+  host: 'pomodoromack.cmd2sg0y0jdx.us-east-1.rds.amazonaws.com',
+  database: 'mackpomo',      // nome do banco criado
+  password: 'GHFofo3578645',     // a senha que você definiu
+  port: 5432,
+  ssl: {
+  rejectUnauthorized: false
+}});
 
-module.exports = db;
+module.exports = pool;
